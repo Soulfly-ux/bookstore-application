@@ -1,0 +1,36 @@
+body {
+    padding: 20px;
+    background-color: #f8f9fa;
+}
+.category-header {
+    margin-bottom: 30px;
+}
+.book-table {
+    margin-bottom: 30px;
+}
+.add-book-form {
+    background-color: #ffffff;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+.btn-remove {
+    background-color: #dc3545;
+    color: white;
+    border: none;
+    padding: 5px 10px;
+    border-radius: 4px;
+}
+.btn-remove:hover {
+    background-color: #c82333;
+}
+.btn-add {
+    background-color: #28a745;
+    color: white;
+    border: none;
+    padding: 5px 10px;
+    border-radius: 4px;
+}
+.btn-add:hover {
+    background-color: #218838;
+}

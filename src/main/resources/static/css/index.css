@@ -1,0 +1,72 @@
+body {
+    font-family: "Yu Gothic Medium", cursive;
+    text-size-adjust: auto;
+    background-color: #ffffff;
+
+}
+
+.navbar {
+    margin-bottom: 0;
+}
+
+.navbar-nav .nav-link:hover {
+    color: #ffc107 !important; /* Жълт цвят при hover */
+}
+
+
+.display-4 {
+    font-family: "Yu Gothic Medium", cursive;
+    margin-top: 10px;
+    padding-bottom: 200px;
+    font-size: 4.5rem;
+    font-weight: bold;
+    color: #333;
+}
+
+.lead {
+    font-family: "Yu Gothic Medium", cursive;
+    font-size: 2.50rem;
+    color: #231e1e;
+    margin-bottom: 150px;
+}
+
+.btn-lg {
+    padding: 10px 30px;
+    font-size: 1.25rem;
+}
+
+.fixed-bottom {
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+    background-color: #f8f9fa;
+    border-top: 1px solid #231e1e;
+}
+
+.d-grid {
+
+    display: inline-grid;
+    color: #1f231e;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 20px;
+    justify-content: center;
+    margin-bottom: 150px;
+    font-size: 4rem;
+
+
+}
+
+.btn-primary {
+    background-color: #282626;
+    border: none;
+    padding: 10px;
+    border-radius: 50px;
+    font-size: 30px;
+    cursor: pointer;
+}
+
+.btn-primary:hover {
+    background-color: #a98135;
+}
+
+

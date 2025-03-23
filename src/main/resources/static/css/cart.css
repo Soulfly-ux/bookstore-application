@@ -1,0 +1,133 @@
+/* Общи стилове */
+body {
+    font-family: 'Arial', sans-serif;
+    background-color: #f8f9fa;
+    color: #333;
+    margin: 0;
+    padding: 0;
+}
+
+.title {
+    font-size: 24px; /* Увеличен размер на текста */
+    color: #dc3545; /* Червен цвят */
+    font-weight: bold; /* Удебелен шрифт */
+    text-transform: uppercase; /* Преобразува в главни букви */
+    margin-top: 20px; /* Разстояние отгоре */
+    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.3); /* Добавен лек текстов сянка */
+}
+
+
+/* Навигационна лента */
+.navbar {
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.navbar-brand {
+    font-weight: bold;
+    font-size: 1.5rem;
+}
+
+.nav-link {
+    font-size: 1rem;
+    margin-right: 1rem;
+}
+
+.nav-link:hover {
+    color: #007bff !important;
+}
+
+/* Основно съдържание */
+.container {
+    margin-top: 2rem;
+}
+
+h2 {
+    font-size: 2rem;
+    font-weight: bold;
+    color: #007bff;
+    margin-bottom: 1.5rem;
+    text-align: center;
+}
+
+/* Таблица */
+.table {
+    width: 100%;
+    margin-bottom: 1rem;
+    background-color: #fff;
+    border-collapse: collapse;
+}
+
+.table th,
+.table td {
+    padding: 0.75rem;
+    vertical-align: top;
+    border-top: 1px solid #dee2e6;
+}
+
+.table thead th {
+    vertical-align: bottom;
+    border-bottom: 2px solid #dee2e6;
+    background-color: #343a40;
+    color: #fff;
+}
+
+.table-striped tbody tr:nth-of-type(odd) {
+    background-color: rgba(0, 0, 0, 0.05);
+}
+
+.table-bordered {
+    border: 1px solid #dee2e6;
+}
+
+.table-bordered th,
+.table-bordered td {
+    border: 1px solid #dee2e6;
+}
+
+/* Бутони за действие */
+.action-buttons {
+    display: flex;
+    gap: 10px;
+}
+
+.action-buttons .btn {
+    padding: 5px 10px;
+    font-size: 14px;
+}
+
+.btn-success {
+    background-color: #28a745;
+    border-color: #28a745;
+    color: #fff;
+}
+
+.btn-success:hover {
+    background-color: #218838;
+    border-color: #1e7e34;
+}
+
+.btn-danger {
+    background-color: #dc3545;
+    border-color: #dc3545;
+    color: #fff;
+}
+
+.btn-danger:hover {
+    background-color: #c82333;
+    border-color: #bd2130;
+}
+
+/* Футер */
+footer {
+    background-color: #343a40;
+    color: #fff;
+    padding: 1rem 0;
+    margin-top: 2rem;
+    box-shadow: 0 -2px 4px rgba(0, 0, 0, 0.1);
+    text-align: center;
+}
+
+footer p {
+    margin-bottom: 0;
+    font-size: 0.9rem;
+}

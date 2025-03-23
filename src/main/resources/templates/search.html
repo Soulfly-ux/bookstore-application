@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <title>Search Books</title>
+    <link rel="stylesheet" th:href="@{/css/styles.css}">
+</head>
+<body>
+<!-- Навигационна лента -->
+<nav class="navbar navbar-expand-lg navbar-light bg-dark">
+    <div class="container-fluid">
+        <a class="navbar-brand text-white" href="#">Bookstore</a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                <li class="nav-item">
+                    <a class="nav-link active text-white" aria-current="page" th:href="@{/home}">Home</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link text-white" th:href="@{/available_books}">Available Books</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link text-white" th:href="@{/my_books}">My Books</a>
+                </li>
+            </ul>
+        </div>
+    </div>
+</nav>
+
+<!-- Форма за търсене -->
+<div class="container mt-5">
+    <h2 class="text-center mb-4">Search Books</h2>
+    <form th:action="@{/books/search}" method="POST" th:object="${searchForm}"   class="mb-4">
+        <div class="input-group">
+            <input type="text" class="form-control" name="query" th:value="${searchQuery}" placeholder="Search by title or author...">
+            <button type="submit" class="btn btn-primary">Search</button>
+        </div>
+    </form>
+
+    <!-- Резултати от търсенето -->
+    <div th:if="${searchResults != null and !searchResults.isEmpty()}">
+        <h3 class="mb-3">Search Results</h3>
+        <div class="row">
+            <div th:each="book : ${searchResults}" class="col-md-4 mb-4">
+                <div class="card">
+                    <div class="card-body">
+                        <h5 class="card-title" th:text="${book.title}">Book Title</h5>
+                        <p class="card-text" th:text="${book.author}">Author</p>
+                        <p class="card-text" th:text="${ book.price() + ' EUR'}">Price</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Съобщение, ако няма резултати -->
+    <div th:if="${searchResults != null and searchResults.isEmpty()}">
+        <p class="text-center">No books found for "<span th:text="${searchQuery}"></span>".</p>
+    </div>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
