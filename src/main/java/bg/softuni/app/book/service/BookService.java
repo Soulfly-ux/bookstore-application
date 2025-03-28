@@ -2,18 +2,13 @@ package bg.softuni.app.book.service;
 
 import bg.softuni.app.book.model.Book;
 import bg.softuni.app.book.repository.BookRepository;
-import bg.softuni.app.user.model.User;
 import bg.softuni.app.web.dto.AddBook;
 
-import jakarta.persistence.EntityManager;
-import jakarta.validation.Valid;
-import org.hibernate.StaleObjectStateException;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import java.math.BigDecimal;
 import java.util.List;
-import java.util.Optional;
 import java.util.UUID;
 
 @Service
@@ -22,8 +17,10 @@ public class BookService {
     private final BookRepository bookRepository;
 
 
+    @Autowired
     public BookService(BookRepository bookRepository) {
         this.bookRepository = bookRepository;
+
 
     }
 
