@@ -13,19 +13,21 @@ import java.util.UUID;
 public interface ReviewClient {
 
 
-
-
-         @GetMapping("/test")
+    @GetMapping("/test")
     ResponseEntity<String> getHello(@RequestParam(name = "name") String name);
 
 
     @PostMapping
     ResponseEntity<BookReviewResponse> createReview(@RequestBody NewReviewRequest newReviewRequest);
 
+    @GetMapping(params = "userId")
+    ResponseEntity<List<BookReviewResponse>> getReviewsByUserId(@RequestParam UUID userId);
 
 
+    @GetMapping("{bookId}")
+    ResponseEntity<List<BookReviewResponse>> getReviewsByBookId(@PathVariable UUID bookId);
 
-     @GetMapping("{bookId}")
-     ResponseEntity<List<BookReviewResponse>> getReviewsByBookId(@PathVariable UUID bookId);
+    @GetMapping("/{bookId}/average-rating")
+    ResponseEntity<Double> getAverageRatingByBookId(@PathVariable UUID bookId);
 
 }
