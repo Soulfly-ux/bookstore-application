@@ -53,7 +53,6 @@ public class BookService {
                 .description("")
                 .bookCoverUrl(addBook.getBookCoverUrl())
                 .votes(0)
-                .isAvailable(true)
                 .build();
 
         return bookRepository.save(book);

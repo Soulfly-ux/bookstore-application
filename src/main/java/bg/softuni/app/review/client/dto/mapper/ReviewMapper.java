@@ -8,15 +8,14 @@ import java.time.format.DateTimeFormatter;
 
 @Component
 public class ReviewMapper {
-    private static final DateTimeFormatter DATE_FORMATTER =
-            DateTimeFormatter.ofPattern("dd.MM.yyyy HH:mm");
+
 
     public BookReviewResponse mapReviewResponse(BookReviewResponse review) {
         return BookReviewResponse.builder()
-                .username(review.getUsername())
+
                 .rating(review.getRating())
                 .comment(review.getComment())
-//                .date(review.getDate().format(DATE_FORMATTER))
+                .createdAt(review.getCreatedAt())
                 .build();
     }
 
