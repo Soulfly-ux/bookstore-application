@@ -3,6 +3,7 @@ package bg.softuni.app.web;
 
 import bg.softuni.app.exception.ReviewNotFoundException;
 import bg.softuni.app.review.client.ReviewClient;
+import bg.softuni.app.review.client.dto.BookReviewResponse;
 import bg.softuni.app.review.client.dto.NewReviewRequest;
 import bg.softuni.app.review.service.ReviewService;
 import bg.softuni.app.security.AuthenticationDetails;
@@ -13,13 +14,12 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import java.util.Collections;
+import java.util.List;
 import java.util.UUID;
 
 @Controller
@@ -35,33 +35,48 @@ public class ReviewController {
        this.userService = userService;
    }
 
-    @GetMapping("book/{bookId}")
+    @GetMapping("/{bookId}")
     public ModelAndView getReviewsByBook(@PathVariable UUID bookId, @AuthenticationPrincipal AuthenticationDetails authenticationDetails) {
          ModelAndView modelAndView = new ModelAndView();
-        User currentUser = userService.getById(authenticationDetails.getUserId());
+       User userId = userService.getById(authenticationDetails.getUserId());
+
+
+        List<BookReviewResponse> reviews = reviewService.getReviewsByBookId(bookId);
+
+        if (reviews.isEmpty()) {
+           reviews = Collections.emptyList();
+        }
 
         modelAndView.setViewName("reviews-list");
-        modelAndView.addObject("reviews", reviewService.getReviewsByBookId(bookId));
         modelAndView.addObject("bookId", bookId);
-        modelAndView.addObject("currentUser", currentUser);
+        modelAndView.addObject("userId", userId);
+        modelAndView.addObject("reviews", reviews);
         modelAndView.addObject("newReviewRequest", new NewReviewRequest());
-
+        System.out.println("Loading reviews for book: " + bookId);
         return modelAndView;
     }
 
-    @PostMapping("create")
-    public String createReview(@Valid NewReviewRequest newReviewRequest, @AuthenticationPrincipal AuthenticationDetails authenticationDetails, BindingResult bindingResult, RedirectAttributes redirectAttributes) {
+    @PostMapping("/create/{bookId}")
+    public String createReview(@PathVariable UUID bookId,@Valid @ModelAttribute("newReviewRequest") NewReviewRequest newReviewRequest, @AuthenticationPrincipal AuthenticationDetails authenticationDetails, BindingResult bindingResult, RedirectAttributes redirectAttributes) {
         if (bindingResult.hasErrors()) {
-        return "redirect:/reviews-list";
+          redirectAttributes.addFlashAttribute("error", bindingResult.getAllErrors());
+         redirectAttributes.addFlashAttribute("newReviewRequest", newReviewRequest);
+        return "redirect:/reviews/" + newReviewRequest.getBookId();
         }
-        User currenrUser = userService.getById(authenticationDetails.getUserId());
-        newReviewRequest.setUserId(currenrUser.getId());
+        User currentUser = userService.getById(authenticationDetails.getUserId());
+        newReviewRequest.setBookId(bookId);
+        newReviewRequest.setUserId(currentUser.getId());
         reviewService.createReview(newReviewRequest);
         redirectAttributes.addFlashAttribute("success", "Review created successfully");
-      return "redirect:/reviews/book/" + newReviewRequest.getBookId();
-    }
+     return "redirect:/reviews/" + newReviewRequest.getBookId();
 
-    @GetMapping("user")
+   }
+
+
+
+
+
+    @GetMapping("/user")
     public ModelAndView getReviewsByUser(@AuthenticationPrincipal AuthenticationDetails authenticationDetails) {
         ModelAndView modelAndView = new ModelAndView();
         User currentUser = userService.getById(authenticationDetails.getUserId());
@@ -73,7 +88,7 @@ public class ReviewController {
         return modelAndView;
     }
 
-    @GetMapping("book/{bookId}/average")
+    @GetMapping("/book/{bookId}/average")
     public ModelAndView getAverageRatingByBookId(@PathVariable UUID bookId, @AuthenticationPrincipal AuthenticationDetails authenticationDetails) throws ReviewNotFoundException {
 
         ModelAndView modelAndView = new ModelAndView();

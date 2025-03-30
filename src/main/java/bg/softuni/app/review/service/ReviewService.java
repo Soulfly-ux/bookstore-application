@@ -30,7 +30,7 @@ public class ReviewService {
     }
 
     public BookReviewResponse createReview(NewReviewRequest newReviewRequest) {
-        log.info("Creating review for book with ID: {}", newReviewRequest.getBookId());
+       log.info("Creating review for book with ID: {}", newReviewRequest.getBookId());
         return reviewClient.createReview(newReviewRequest).getBody();
     }
 

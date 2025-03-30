@@ -84,6 +84,11 @@
                                                    th:data-book-title="${book.title}">
             Add to Cart
           </button>
+
+          <a th:href="@{/reviews/{id}(id=${book.id})}"
+             class="btn btn-info">
+            <i class="fas fa-star"></i> Reviews
+          </a>
         </div>
       </div>
     </div>

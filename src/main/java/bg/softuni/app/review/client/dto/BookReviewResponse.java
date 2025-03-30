@@ -17,7 +17,7 @@ public class BookReviewResponse {
     private String comment;
 
     @Min(1) @Max(5)
-    private int rating;
+    private Integer rating;
 
     private LocalDateTime createdAt;
 }

@@ -17,11 +17,12 @@ public class NewReviewRequest {
 
     private UUID bookId;
 
+
     private UUID userId;
 
     private String comment;
 
-    private int rating;
+    private Integer rating;
 
 
 }

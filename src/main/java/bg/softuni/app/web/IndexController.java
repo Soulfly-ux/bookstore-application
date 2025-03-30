@@ -1,5 +1,7 @@
 package bg.softuni.app.web;
 
+import bg.softuni.app.book.model.Book;
+import bg.softuni.app.book.service.BookService;
 import bg.softuni.app.category.model.Category;
 import bg.softuni.app.category.service.CategoryService;
 import bg.softuni.app.order.service.OrderService;
@@ -23,11 +25,13 @@ public class IndexController {
 
     private final UserService userService;
     private final CategoryService categoryService;
+    private final BookService bookService;
 
-    public IndexController(UserService userService, OrderService orderService, CategoryService categoryService) {
+    public IndexController(UserService userService, OrderService orderService, CategoryService categoryService, BookService bookService) {
         this.userService = userService;
 
         this.categoryService = categoryService;
+        this.bookService = bookService;
     }
 
 
@@ -78,22 +82,20 @@ public class IndexController {
     }
 
 
-
-
-
     @GetMapping("/home")
     public ModelAndView getHomePage(@AuthenticationPrincipal AuthenticationDetails authenticationDetails) {
 
 
-
-        User user = userService.getById(authenticationDetails.getUserId());// ще ми трябва ако за да достъпи тази страница потребителя трябва да се е логнал
-                                                                            // или да се показва информация за него например името
+        User user = userService.getById(authenticationDetails.getUserId());// да го махна ако не ми е нужно логване за тази страница
+        List<Book> books = bookService.getAllBooks();
         List<Category> categoriesList = categoryService.getAllCategories();
+
         ModelAndView modelAndView = new ModelAndView();
+
         modelAndView.setViewName("home");
         modelAndView.addObject("user", user);
+        modelAndView.addObject("books", books);
         modelAndView.addObject("categoriesList", categoriesList);
-
 
 
         return modelAndView;

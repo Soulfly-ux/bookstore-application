@@ -1,88 +1,84 @@
-<!--<!DOCTYPE html>-->
-<!--<html xmlns:th="http://www.thymeleaf.org">-->
-<!--<head>-->
-<!--  <meta charset="UTF-8">-->
-<!--  <title>Book Reviews</title>-->
-<!--  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">-->
-<!--  <style>-->
-<!--    .rating {-->
-<!--      color: #ffc107;-->
-<!--      font-size: 1.2rem;-->
-<!--    }-->
-<!--    .review-card {-->
-<!--      border-left: 4px solid #0d6efd;-->
-<!--      padding-left: 1rem;-->
-<!--      margin-bottom: 1.5rem;-->
-<!--    }-->
-<!--  </style>-->
-<!--</head>-->
-<!--<body>-->
-<!--<div class="container mt-4">-->
-<!--  <h1 class="mb-4">Reviews for Book: <span th:text="${bookId}"></span></h1>-->
 
-<!--  &lt;!&ndash; Success/Error messages &ndash;&gt;-->
-<!--  <div th:if="${success}" class="alert alert-success" th:text="${success}"></div>-->
-<!--  <div th:if="${error}" class="alert alert-danger" th:text="${error}"></div>-->
 
-<!--  &lt;!&ndash; Add Review Form &ndash;&gt;-->
-<!--  <div class="card mb-4">-->
-<!--    <div class="card-header">-->
-<!--      <h5>Add Your Review</h5>-->
-<!--    </div>-->
-<!--    <div class="card-body">-->
-<!--      <form th:action="@{/reviews/create}" th:object="${newReview}" method="post">-->
-<!--        <input type="hidden" th:field="*{bookId}">-->
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+  <title>Reviews for Book</title>
+  <link rel="stylesheet" th:href="@{/css/reviews.css}">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <link rel="icon" type="image/png" sizes="32x32" th:href="@{/images/favicon-32x32.png}">
+</head>
+<body>
+<div class="review-container">
+  <h1 class="review-title">Reviews for Book: <span th:text="${bookId}"></span></h1>
 
-<!--        <div class="mb-3">-->
-<!--          <label for="userId" class="form-label">User ID</label>-->
-<!--          <input type="text" class="form-control" id="userId" th:field="*{userId}" required>-->
-<!--        </div>-->
+  <!-- Success/Error messages -->
+  <div class="alert-messages">
+    <div th:if="${success}" class="alert alert-success" th:text="${success}"></div>
+    <div th:if="${error}" class="alert alert-danger" th:text="${error}"></div>
+  </div>
 
-<!--        <div class="mb-3">-->
-<!--          <label for="rating" class="form-label">Rating</label>-->
-<!--          <select class="form-select" id="rating" th:field="*{rating}" required>-->
-<!--            <option value="1">1 Star</option>-->
-<!--            <option value="2">2 Stars</option>-->
-<!--            <option value="3">3 Stars</option>-->
-<!--            <option value="4">4 Stars</option>-->
-<!--            <option value="5">5 Stars</option>-->
-<!--          </select>-->
-<!--        </div>-->
+  <!-- Add Review Form -->
+  <div class="review-form-card">
+    <div class="card-header">
+      <h2>Add Your Review</h2>
+    </div>
+    <div class="card-body">
+      <form th:action="@{/reviews/create/{bookId}(bookId=${bookId})}"  th:method="POST" th:object="${newReviewRequest}">
+        <input type="hidden" th:value="bookId" th:field="*{bookId}">
+        <input type="hidden" th:value="userId" th:field="*{userId}">
 
-<!--        <div class="mb-3">-->
-<!--          <label for="comment" class="form-label">Comment</label>-->
-<!--          <textarea class="form-control" id="comment" th:field="*{comment}" rows="3" required></textarea>-->
-<!--        </div>-->
+        <div class="form-group">
+          <label for="rating">Rating</label>
+          <select class="form-control" id="rating" th:field="*{rating}" required>
+            <option value="">Select rating</option>
+            <option value="1">★ (1)</option>
+            <option value="2">★★ (2)</option>
+            <option value="3">★★★ (3)</option>
+            <option value="4">★★★★ (4)</option>
+            <option value="5">★★★★★ (5)</option>
+          </select>
+        </div>
 
-<!--        <button type="submit" class="btn btn-primary">Submit Review</button>-->
-<!--      </form>-->
-<!--    </div>-->
-<!--  </div>-->
+        <div class="form-group">
+          <label for="comment">Your Review</label>
+          <textarea class="form-control" id="comment" th:field="*{comment}" rows="4" required></textarea>
+        </div>
 
-<!--  &lt;!&ndash; Reviews List &ndash;&gt;-->
-<!--  <h3 class="mb-3">All Reviews</h3>-->
-<!--  <div th:if="${reviews.empty}" class="alert alert-info">No reviews yet. Be the first to review!</div>-->
+        <button type="submit" class="btn-submit">Submit Review</button>
+      </form>
+    </div>
+  </div>
 
-<!--  <div th:each="review : ${reviews}" class="review-card">-->
-<!--    <div class="d-flex justify-content-between">-->
-<!--      <div class="rating">-->
-<!--                    <span th:each="i : ${#numbers.sequence(1, 5)}">-->
-<!--                        <span th:if="${i <= review.rating}">★</span>-->
-<!--                        <span th:if="${i > review.rating}">☆</span>-->
-<!--                    </span>-->
-<!--        (<span th:text="${review.rating}"></span>/5)-->
-<!--      </div>-->
-<!--      <small class="text-muted" th:text="${#temporals.format(review.createdAt, 'dd MMM yyyy')}"></small>-->
-<!--    </div>-->
-<!--    <p class="mt-2" th:text="${review.comment}"></p>-->
-<!--    <small class="text-muted">By User ID: <span th:text="${review.userId}"></span></small>-->
-<!--  </div>-->
+  <!-- Reviews List -->
+  <div class="reviews-section">
+    <h2>Customer Reviews</h2>
+    <div th:if="${reviews == null || reviews.isEmpty()}" class="no-reviews">
+      No reviews yet. Be the first to review!
+    </div>
 
-<!--  <div class="mt-4">-->
-<!--    <a th:href="@{/reviews/book/{id}/average(id=${bookId})}" class="btn btn-outline-secondary">-->
-<!--      View Average Rating-->
-<!--    </a>-->
-<!--  </div>-->
-<!--</div>-->
-<!--</body>-->
-<!--</html>-->
+    <div th:if="${reviews != null && !reviews.isEmpty()}" th:each="review : ${reviews}" class="review-card">
+      <div class="review-header">
+        <div class="review-rating">
+            <span th:each="i : ${#numbers.sequence(1, 5)}">
+              <i th:class="${i <= review.rating} ? 'fas fa-star' : 'far fa-star'"></i>
+            </span>
+        </div>
+        <div class="review-date" th:text="${#temporals.format(review.createdAt, 'dd MMM yyyy')}"></div>
+      </div>
+      <div class="review-comment" th:text="${review.comment}"></div>
+      <div class="review-user">
+<!--        Reviewed by: <span th:text="${review.userId}"></span>-->
+      </div>
+    </div>
+  </div>
+
+  <div class="average-rating-link">
+    <a th:href="@{/reviews/book/{id}/average(id=${bookId})}" class="btn-average">
+      View Average Rating <i class="fas fa-chevron-right"></i>
+    </a>
+  </div>
+</div>
+</body>
+</html>

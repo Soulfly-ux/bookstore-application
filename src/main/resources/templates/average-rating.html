@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Average Rating</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        .rating-display {
+            font-size: 5rem;
+            color: #fd7e14;
+            font-weight: bold;
+        }
+        .stars {
+            font-size: 2rem;
+            letter-spacing: 5px;
+        }
+    </style>
+</head>
+<body>
+<div class="container text-center mt-5">
+    <h1>Average Rating for Book</h1>
+    <h3 class="text-muted mb-4" th:text="${bookId}"></h3>
+
+<!--    <div th:if="${error}" class="alert alert-danger" th:text="${error}"></div>-->
+
+<!--    <div th:unless="${error}">-->
+        <div class="rating-display" th:text="${#numbers.formatDecimal(averageRating, 1, 1)}"></div>
+        <div class="stars mb-4">
+                <span th:each="i : ${#numbers.sequence(1, 5)}">
+                    <span th:if="${i <= averageRating}">★</span>
+                    <span th:if="${i > averageRating}">☆</span>
+                </span>
+        </div>
+    </div>
+
+    <a th:href="@{/reviews/book/{id}(id=${bookId})}" class="btn btn-primary">
+        Back to Reviews
+    </a>
+</div>
+</body>
+</html>
