@@ -1,3 +1,5 @@
+
+
 <!DOCTYPE html>
 <html lang="bg" xmlns:font-size="http://www.w3.org/1999/xhtml">
 <head>
@@ -6,20 +8,15 @@
     <title>Online BookStore</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
 
-    <link rel="stylesheet" type="text/css" href="/css/index.css">
+    <link rel="stylesheet" th:href="@{/css/index.css}">
     <link rel="icon" type="image/png" sizes="32x32" th:href="@{/images/favicon-32x32.png}">
 </head>
 <body style="background-image: url('/images/book covers2.png'); background-size: cover; background-position: center; background-repeat: no-repeat; background-attachment: fixed;">
 
 <nav class="navbar navbar-expand-lg navbar-light bg-dark">
     <div class="container-fluid">
-
         <div class="collapse navbar-collapse" id="navbarNav">
-
-
-
             <ul class="navbar-nav ms-auto">
-
                 <li class="nav-item">
                     <a class="nav-link text-white" th:href="@{/login}">Log in</a>
                 </li>
@@ -27,39 +24,21 @@
                     <a class="nav-link text-white" th:href="@{/register}">Registration</a>
                 </li>
             </ul>
-
         </div>
     </div>
 </nav>
 
+<div class="container d-flex flex-column justify-content-center align-items-center vh-100 bg-light bg-opacity-75">
+    <!-- Голям бутон на мястото на заглавието -->
+    <a th:href="@{/home}" class="btn btn-primary btn-lg p-4 display-4 font-sans-serif text-white text-decoration-none">
+        WELCOME TO LITERARY ESCAPE
+    </a>
 
-
-<div class="container d-flex flex-column justify-content-center align-items-center vh-100 bg-light bg-opacity-75 ">
-    <!-- Лого -->
-    <div class="text-center mb-4"  >
-
-
-
-
-
-        <h1 class="display-4 font-sans-serif align-text-bottom" >WELCOME TO LITERARY ESCAPE</h1>
-        <div class="d-grid  d-md-block gap-4">
-            <a th:href="@{/register}"class="btn btn-primary btn-lg">New arrivals</a>
-            <a th:href="@{/books/available}" class="btn btn-primary btn-lg">Our Books</a>
-            <a th:href="@{/home}" class="btn btn-primary btn-lg">Best of the Month</a>
-        </div>
-
-        <p class="lead">Find your favourite books in one place!</p>
-    </div>
-
-
-
+    <p class="lead mt-3">Find your favourite books in one place!</p>
 </div>
 
-
-
-<footer class="bg-dark text-center text-white py-3 fixed-bottom ">
-    <p >&copy; 2025 Literary Escape.All rights reserved.</p>
+<footer class="bg-dark text-center text-white py-3 fixed-bottom">
+    <p>&copy; 2025 Literary Escape. All rights reserved.</p>
 </footer>
 
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>

@@ -3,6 +3,7 @@ package bg.softuni.app.config;
 import org.springframework.boot.autoconfigure.security.servlet.PathRequest;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.http.HttpMethod;
 import org.springframework.security.config.annotation.method.configuration.EnableMethodSecurity;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
@@ -25,7 +26,6 @@ public class WebMvcConfiguration implements WebMvcConfigurer {
         http
                 .authorizeHttpRequests(matchers -> matchers
                         .requestMatchers(PathRequest.toStaticResources().atCommonLocations()) .permitAll()
-//                           .requestMatchers("/books/register").hasRole("ADMIN")
                         .requestMatchers( "/", "/register", "/books/available","/books/search", "/best_sellers","/home").permitAll()
                                 .requestMatchers("/reviews/**").permitAll()
                         .anyRequest().authenticated()

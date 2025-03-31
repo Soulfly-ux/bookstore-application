@@ -112,17 +112,17 @@ public class OrderService {
         order.setTotalPrice(totalPrice);
     }
 
-    public void createOrderItem(Order order, Book book, int quantity) {
-
-        validateOrderItem(book, quantity);
-
-        OrderItem item = new OrderItem();
-        item.setOrder(order);
-        item.setBook(book);
-        item.setQuantity(quantity);
-
-        orderItemRepository.save(item);
-    }
+//    public void createOrderItem(Order order, Book book, int quantity) {
+//
+//        validateOrderItem(book, quantity);
+//
+//        OrderItem item = new OrderItem();
+//        item.setOrder(order);
+//        item.setBook(book);
+//        item.setQuantity(quantity);
+//
+//        orderItemRepository.save(item);
+//    }
 
     public List<Order> getAllOrders() {
         return orderRepository.findAll();

@@ -1,5 +1,6 @@
 package bg.softuni.app.user.service;
 
+
 import bg.softuni.app.security.AuthenticationDetails;
 import bg.softuni.app.user.model.User;
 import bg.softuni.app.user.model.UserRole;
@@ -84,7 +85,7 @@ public class UserService implements UserDetailsService {
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
 
-        User user = userRepository.findByUsername(username).orElseThrow(() -> new RuntimeException("User with username [%s] not found.".formatted(username)));
+        User user = userRepository.findByUsername(username).orElseThrow(() -> new IllegalStateException("User with username [%s] not found.".formatted(username)));
         return new AuthenticationDetails(user.getId(), user.getUsername(), user.getPassword(), user.getRole(), user.isActive());
 
 

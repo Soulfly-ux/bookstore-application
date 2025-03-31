@@ -8,9 +8,18 @@ body {
 }
 
 /* Стилове за навигационната лента */
+/*.navbar {*/
+/*    background-color: #343a40 !important; !* Тъмно сив цвят *!*/
+/*    padding: 10px 0;*/
+/*}*/
+
 .navbar {
-    background-color: #343a40 !important; /* Тъмно сив цвят */
-    padding: 10px 0;
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 1000;
+    padding: 0.5rem 1rem;
 }
 
 .navbar-brand {

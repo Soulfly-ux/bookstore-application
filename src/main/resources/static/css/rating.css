@@ -1,0 +1,55 @@
+
+.rating-display {
+    font-size: 5rem;
+    color: #fd7e14;
+    font-weight: bold;
+}
+.stars {
+    font-size: 2rem;
+    letter-spacing: 5px;
+}
+.navbar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 1000;
+    padding: 0.5rem 1rem;
+}
+
+/* Осигуряваме място за навбара, за да не се скрива съдържанието */
+body {
+    padding-top: 60px;
+}
+
+/* Подравняване на елементите едно до друго */
+.navbar-nav {
+    display: flex;
+    flex-direction: row;
+    gap: 1rem;
+}
+
+/* Стилове за линковете */
+.nav-link {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.navbar {
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.navbar-brand {
+    font-weight: bold;
+    font-size: 1.5rem;
+}
+
+.nav-link {
+    font-size: 1rem;
+    margin-right: 1rem;
+}
+
+.nav-link:hover {
+    color: #ffc107 !important;
+}

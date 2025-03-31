@@ -83,17 +83,17 @@ public class IndexController {
 
 
     @GetMapping("/home")
-    public ModelAndView getHomePage(@AuthenticationPrincipal AuthenticationDetails authenticationDetails) {
+    public ModelAndView getHomePage() {
 
 
-        User user = userService.getById(authenticationDetails.getUserId());// да го махна ако не ми е нужно логване за тази страница
+//        User user = userService.getById(authenticationDetails.getUserId());// да го махна ако не ми е нужно логване за тази страница
         List<Book> books = bookService.getAllBooks();
         List<Category> categoriesList = categoryService.getAllCategories();
 
         ModelAndView modelAndView = new ModelAndView();
 
         modelAndView.setViewName("home");
-        modelAndView.addObject("user", user);
+//        modelAndView.addObject("user", user);
         modelAndView.addObject("books", books);
         modelAndView.addObject("categoriesList", categoriesList);
 
