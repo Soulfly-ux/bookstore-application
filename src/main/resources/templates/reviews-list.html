@@ -43,18 +43,18 @@
 
 
 <div class="review-container">
-<!--  <h1 class="review-title">Reviews for Book: <span th:text="${bookId}"></span></h1>-->
 
-  <!-- Success/Error messages -->
+
+
   <div class="alert-messages">
     <div th:if="${success}" class="alert alert-success" th:text="${success}"></div>
     <div th:if="${error}" class="alert alert-danger" th:text="${error}"></div>
   </div>
 
-  <!-- Add Review Form -->
+
   <div class="review-form-card">
-    <div class="card-header">
-      <h2>Add Your Review</h2>
+    <div class="card-header text-center">
+      <h2>Add Your Review For This Book</h2>
     </div>
     <div class="card-body">
       <form th:action="@{/reviews/create/{bookId}(bookId=${bookId})}"  th:method="POST" th:object="${newReviewRequest}">
@@ -83,7 +83,7 @@
     </div>
   </div>
 
-  <!-- Reviews List -->
+
   <div class="reviews-section">
     <h2>Customer Reviews</h2>
     <div th:if="${reviews == null || reviews.isEmpty()}" class="no-reviews">
@@ -101,12 +101,12 @@
       </div>
       <div class="review-comment" th:text="${review.comment}"></div>
       <div class="review-user">
-<!--        Reviewed by: <span th:text="${review.userId}"></span>-->
+
       </div>
     </div>
   </div>
 
-  <div class="average-rating-link">
+  <div th:if="${hasReviews}" class="average-rating-link">
     <a th:href="@{/reviews/book/{id}/average(id=${bookId})}" class="btn-average">
       View Average Rating <i class="fas fa-chevron-right"></i>
     </a>

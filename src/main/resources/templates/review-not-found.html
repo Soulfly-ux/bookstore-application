@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Error | Literary Escape</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+
+</head>
+<body>
+<div class="error-container">
+    <div class="error-card card p-4 text-center">
+        <!-- Икона за грешка -->
+        <div class="error-icon">
+            <i class="fas fa-exclamation-triangle"></i>
+        </div>
+
+        <!-- Заглавие -->
+        <h1 class="mb-3">Review Not Found</h1>
+
+        <!-- Съобщение за грешка (от контролера) -->
+        <div class="alert alert-danger mb-4" role="alert">
+            <h4 th:text="${message} ?: 'The requested review does not exist'"></h4>
+            <p>Error Code: <span th:text="${errorCode} ?: 404"></span></p>
+        </div>
+
+        <!-- Бутони за навигация -->
+        <div class="d-flex gap-3 justify-content-center">
+            <a th:href="@{/books/available}" class="btn btn-primary">
+                <i class="fas fa-book me-2"></i> Browse Books
+            </a>
+            <a th:href="@{/}" class="btn btn-outline-secondary">
+                <i class="fas fa-home me-2"></i> Return Home
+            </a>
+        </div>
+    </div>
+</div>
+
+<!-- Font Awesome за икони -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/js/all.min.js"></script>
+</body>
+</html>

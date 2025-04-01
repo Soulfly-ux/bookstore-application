@@ -1,6 +1,7 @@
 package bg.softuni.app.user.service;
 
 
+import bg.softuni.app.exception.UserAlreadyExistException;
 import bg.softuni.app.security.AuthenticationDetails;
 import bg.softuni.app.user.model.User;
 import bg.softuni.app.user.model.UserRole;
@@ -43,11 +44,13 @@ public class UserService implements UserDetailsService {
         Optional<User> optionalUser = userRepository.findByUsernameOrEmail(registerRequest.getUsername(), registerRequest.getEmail());
 
         if (optionalUser.isPresent()) {
-            throw new IllegalStateException("User with username " + registerRequest.getUsername() + " already exists");
+            throw new UserAlreadyExistException("User with username " + registerRequest.getUsername() + " already exists");
         }
 
         User user = initUser(registerRequest);
         userRepository.save(user);
+
+        log.info("User with username [%s] and email [%s] registered successfully".formatted(registerRequest.getUsername(), registerRequest.getEmail()) );
 
         return user;
     }
@@ -68,7 +71,7 @@ public class UserService implements UserDetailsService {
 
     public void editUserProfile (UUID id, UserEditRequest userEditRequest) {
 
-        User user = getById(id);
+        User user = userRepository.findById(id).orElseThrow(() -> new NullPointerException("User with id " + id + " does not exist"));
         user.setFirstName(userEditRequest.getFirstName());
         user.setLastName(userEditRequest.getLastName());
         user.setProfilePicture(userEditRequest.getProfilePicture());
@@ -78,7 +81,7 @@ public class UserService implements UserDetailsService {
     }
 
     public User getById(UUID id) {
-        return userRepository.findById(id).orElseThrow(() -> new IllegalStateException("User with id " + id + " does not exist"));
+        return userRepository.findById(id).orElseThrow(() -> new UserAlreadyExistException("User with id " + id + " does not exist"));
     }
 
 
@@ -94,7 +97,7 @@ public class UserService implements UserDetailsService {
 
     public void switchUserRole(UUID id) {
 
-        User user = userRepository.getById(id);
+        User user = userRepository.findById(id).orElseThrow(() -> new UserAlreadyExistException("User with id " + id + " does not exist"));
 
 
 

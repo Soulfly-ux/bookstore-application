@@ -1,0 +1,20 @@
+
+.error-container {
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background-color: #f8f9fa;
+}
+.error-icon {
+    font-size: 5rem;
+    color: #dc3545;
+    margin-bottom: 1.5rem;
+}
+.error-card {
+    width: 100%;
+    max-width: 600px;
+    border: none;
+    box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.15);
+}

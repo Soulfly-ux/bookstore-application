@@ -27,7 +27,7 @@
             <h4 class="alert-heading" th:text="${message} ?: 'Resource not found'"></h4>
             <p>We couldn't find what you were looking for.</p>
             <hr>
-            <p class="mb-0" th:text="${#temporals.format(#dates.createNow(), 'dd MMM yyyy HH:mm')}"></p>
+            <p class="mb-0" th:text="${#temporals.format(#temporals.createNow(), 'dd MMM yyyy HH:mm')}"></p>
         </div>
 
         <div class="d-flex gap-3 justify-content-center">

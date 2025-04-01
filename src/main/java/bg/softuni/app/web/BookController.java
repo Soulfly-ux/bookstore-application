@@ -76,7 +76,7 @@ public class BookController {
 
 
 
-        Book addedBook = bookService.createNewBook(addBook);
+     bookService.createNewBook(addBook);
 
         return "redirect:/home";
     }
@@ -84,15 +84,15 @@ public class BookController {
 
 
 
-
-    @GetMapping("/my_books")
-    public ModelAndView getMyBooks(@AuthenticationPrincipal AuthenticationDetails authenticationDetails) {
-
-        ModelAndView modelAndView = new ModelAndView();
-        modelAndView.setViewName("myBooks");
-
-        return modelAndView;
-    }
+//
+//    @GetMapping("/my_books")
+//    public ModelAndView getMyBooks(@AuthenticationPrincipal AuthenticationDetails authenticationDetails) {
+//
+//        ModelAndView modelAndView = new ModelAndView();
+//        modelAndView.setViewName("myBooks");
+//
+//        return modelAndView;
+//    }
 
 //    @PostMapping("/save")
 //    public String addBook(@ModelAttribute Book book) {

@@ -1,11 +1,13 @@
 package bg.softuni.app.web;
 
+import bg.softuni.app.exception.ReviewNotFoundException;
 import bg.softuni.app.exception.UserAlreadyExistException;
 import lombok.extern.slf4j.Slf4j;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.ErrorResponse;
 import org.springframework.web.bind.MissingRequestValueException;
 import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
@@ -25,7 +27,7 @@ public class GlobalExceptionHandler {
     @ExceptionHandler(UserAlreadyExistException.class)
     public String handleUserAlreadyExistException(UserAlreadyExistException e) {
         logger.error("User already exists: ", e);
-        return "user-already-exists";
+        return "redirect:/register";
     }
 
     @ResponseStatus(HttpStatus.NOT_FOUND)
@@ -51,8 +53,20 @@ public class GlobalExceptionHandler {
 
     @ExceptionHandler(Exception.class)
     public ResponseEntity<String> handleException(Exception e) {
-        logger.error("An error occurred: ", e); // Логване на грешката
+        logger.error("An error occurred: ", e);
         return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("Failed to add book to cart: " + e.getMessage());
+    }
+
+    @ResponseStatus(HttpStatus.NOT_FOUND)
+    @ExceptionHandler(ReviewNotFoundException.class)
+    public ModelAndView handleNotFoundException(ReviewNotFoundException ex) {
+        logger.warn("Resource not found: {}", ex.getMessage());
+
+        ModelAndView modelAndView = new ModelAndView();
+        modelAndView.setViewName("review-not-found");
+        modelAndView.addObject("message", ex.getMessage());
+        modelAndView.addObject("errorCode", 404);
+        return modelAndView;
     }
 
 

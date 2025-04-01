@@ -51,8 +51,9 @@ public class ReviewController {
         modelAndView.addObject("bookId", bookId);
         modelAndView.addObject("userId", userId);
         modelAndView.addObject("reviews", reviews);
+        modelAndView.addObject("hasReviews", !reviews.isEmpty());
         modelAndView.addObject("newReviewRequest", new NewReviewRequest());
-        System.out.println("Loading reviews for book: " + bookId);
+
         return modelAndView;
     }
 
