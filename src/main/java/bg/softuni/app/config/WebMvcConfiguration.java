@@ -22,12 +22,11 @@ public class WebMvcConfiguration implements WebMvcConfigurer {
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
 
 
-
         http
                 .authorizeHttpRequests(matchers -> matchers
-                        .requestMatchers(PathRequest.toStaticResources().atCommonLocations()) .permitAll()
-                        .requestMatchers( "/", "/register", "/books/available","/books/search", "/best_sellers","/home").permitAll()
-                                .requestMatchers("/reviews/**").permitAll()
+                        .requestMatchers(PathRequest.toStaticResources().atCommonLocations()).permitAll()
+                        .requestMatchers("/", "/register", "/books/available", "/books/search", "/best_sellers", "/home").permitAll()
+                        .requestMatchers("/reviews/**").permitAll()
                         .anyRequest().authenticated()
 
                 )
@@ -39,29 +38,10 @@ public class WebMvcConfiguration implements WebMvcConfigurer {
                         .failureUrl("/login?error")
                         .permitAll())
                 .logout(logout -> logout
-                               .logoutRequestMatcher(new AntPathRequestMatcher("/logout", "GET"))
-                                .logoutSuccessUrl("/")
+                        .logoutRequestMatcher(new AntPathRequestMatcher("/logout", "GET"))
+                        .logoutSuccessUrl("/")
 
                 );
-
-
-
-
-
-
-
-
-
-
-
-        // ЗА ЛОГВАНЕ НА НАС НИ ТРЯБВА САМО GET МЕТОДА ОТ КОНТРОЛЕРА ЗА ДА ПОКАЖЕМ СТРАНИЦАТА,
-        // POST МЕТОДА НЕ НИ ТРЯБВА, ЛОГКАТА ЗА ЛОГВАНЕ ИДВА ОТ SECURITY FILTER CHAIN, LOGIN МЕТОДА В СЪРВИС В СЪЩО НЕ НИ ТРЯБВА
-
-
-
-
-
-
 
 
         return http.build();
