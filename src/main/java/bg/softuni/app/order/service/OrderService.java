@@ -67,9 +67,10 @@ public class OrderService {
                 .orderDate(LocalDate.now())
                 .status(OrderStatus.PENDING)
                 .totalPrice(0.0)
+                .orderItems(new ArrayList<>())
                 .build();
 
-        return orderRepository.save(order);
+        return order;
     }
 
 
@@ -112,39 +113,29 @@ public class OrderService {
         order.setTotalPrice(totalPrice);
     }
 
-//    public void createOrderItem(Order order, Book book, int quantity) {
+
+
+//    public List<Order> getAllOrders() {
+//        return orderRepository.findAll();
+//    }
 //
-//        validateOrderItem(book, quantity);
+//    public void completeOrder(UUID id) {
+//        Order order = orderRepository.findById(id).orElseThrow(() -> new RuntimeException("Order not found"));
 //
-//        OrderItem item = new OrderItem();
-//        item.setOrder(order);
-//        item.setBook(book);
-//        item.setQuantity(quantity);
+//        order.setStatus(OrderStatus.COMPLETED);
 //
-//        orderItemRepository.save(item);
+//        orderRepository.save(order);
 //    }
 
-    public List<Order> getAllOrders() {
-        return orderRepository.findAll();
-    }
-
-    public void completeOrder(UUID id) {
-        Order order = orderRepository.findById(id).orElseThrow(() -> new RuntimeException("Order not found"));
-
-        order.setStatus(OrderStatus.COMPLETED);
-
-        orderRepository.save(order);
-    }
 
 
-
-    public void cancelOrder(UUID id) {
-        Order order = orderRepository.findById(id).orElseThrow(() -> new RuntimeException("Order not found"));
-
-        order.setStatus(OrderStatus.CANCELLED);
-
-        orderRepository.save(order);
-    }
+//    public void cancelOrder(UUID id) {
+//        Order order = orderRepository.findById(id).orElseThrow(() -> new RuntimeException("Order not found"));
+//
+//        order.setStatus(OrderStatus.CANCELLED);
+//
+//        orderRepository.save(order);
+//    }
 
 
     public List<OrderItem> getOrderItems(UUID orderId) {
@@ -165,18 +156,18 @@ public class OrderService {
 
 
 
-    public void removeItemFromOrder(UUID id) {
-
-        orderItemRepository.deleteById(id);
-    }
-
-
-    public void buyItems(UUID id) {
-        Order order = orderRepository.findById(id).orElseThrow(() -> new RuntimeException("Order not found"));
-        order.setStatus(OrderStatus.COMPLETED);
-
-        orderRepository.save(order);
-    }
+//    public void removeItemFromOrder(UUID id) {
+//
+//        orderItemRepository.deleteById(id);
+//    }
+//
+//
+//    public void buyItems(UUID id) {
+//        Order order = orderRepository.findById(id).orElseThrow(() -> new RuntimeException("Order not found"));
+//        order.setStatus(OrderStatus.COMPLETED);
+//
+//        orderRepository.save(order);
+//    }
 
 //    public boolean hasOrderItems(UUID id) {
 //        return !orderItemRepository.existsById(id);
@@ -193,27 +184,22 @@ public class OrderService {
         orderItemRepository.save(item);
     }
 
-    public void deleteOrderItem(UUID id) {
-        orderItemRepository.deleteById(id);
-    }
 
 
-    private void validateOrderItem(Book book, int quantity) {
-        if (quantity <= 0) {
-            throw new RuntimeException("Quantity must be greater than 0");
-        }
-
-        if (!book.isAvailable()) {
-            throw new RuntimeException("Book not found");
-        }
-
-
-
-
-    }
+//
+//    private void validateOrderItem(Book book, int quantity) {
+//        if (quantity <= 0) {
+//            throw new RuntimeException("Quantity must be greater than 0");
+//        }
+//
+//        if (!book.isAvailable()) {
+//            throw new RuntimeException("Book not found");
+//        }
+//
+//    }
 
 
-    public Order getOrderById(UUID orderId) {
-      return   orderRepository.findById(orderId).orElseThrow(() -> new RuntimeException("Order not found"));
-    }
+//    public Order getOrderById(UUID orderId) {
+//      return   orderRepository.findById(orderId).orElseThrow(() -> new RuntimeException("Order not found"));
+//    }
 }

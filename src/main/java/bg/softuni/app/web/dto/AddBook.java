@@ -12,6 +12,7 @@ import java.util.UUID;
 @Data
 @Builder
 @Getter
+@Setter
 @NoArgsConstructor
 @AllArgsConstructor
 public class AddBook {
@@ -29,7 +30,6 @@ public class AddBook {
     @NotEmpty(message = "Book cover URL is required")
     @URL
     private String bookCoverUrl;
-
 
 
 

@@ -55,14 +55,14 @@ public class UserServiceUTest {
 
      @BeforeEach
     void setUp() {
-        this.userId = UUID.randomUUID();
-        this.username = "testUsername";
-        this.email = "test@email.com";
-        this.rawPassword = "testPassword";
-        this.encodedPassword = "testEncodedPassword";
-        this.userCountry = Country.BULGARIA;
+        userId = UUID.randomUUID();
+        username = "testUsername";
+        email = "test@email.com";
+        rawPassword = "testPassword";
+        encodedPassword = "testEncodedPassword";
+        userCountry = Country.BULGARIA;
 
-        this.testUser = User.builder()
+        testUser = User.builder()
                 .id(userId)
                 .username(username)
                 .email(email)
