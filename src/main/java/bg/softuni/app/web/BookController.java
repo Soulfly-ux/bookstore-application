@@ -84,53 +84,36 @@ public class BookController {
 
 
 
+
+
+
+//    @PostMapping("/search")
+//    public String searchBooks(@Valid @ModelAttribute("searchForm")  ModelAndView modelAndView, BookSearchRequest bookSearchRequest) {
 //
-//    @GetMapping("/my_books")
-//    public ModelAndView getMyBooks(@AuthenticationPrincipal AuthenticationDetails authenticationDetails) {
 //
-//        ModelAndView modelAndView = new ModelAndView();
-//        modelAndView.setViewName("myBooks");
+//      String query = bookSearchRequest.getQuery();
 //
-//        return modelAndView;
+//      List<Book> searchResults = bookService.searchBooks(query);
+//
+//
+//
+//      searchResults = searchResults.stream().distinct().collect(Collectors.toList());
+//
+//        modelAndView.addObject("searchQuery", query);
+//         modelAndView.addObject("searchResults", searchResults);
+//
+//
+//
+//        return "search";
+//
 //    }
 
-//    @PostMapping("/save")
-//    public String addBook(@ModelAttribute Book book) {
-//
-//        bookService.saveBook(book);
-//
-//        return "redirect:/search";
-//    }
-
-    @GetMapping("/search")
-    public ModelAndView getSearchPage(String query) {
+    @GetMapping("/soon")
+    public ModelAndView getSoon() {
 
         ModelAndView modelAndView = new ModelAndView();
-        modelAndView.setViewName("search");
-       modelAndView.addObject("searchQuery", new BookSearchRequest());
+        modelAndView.setViewName("soon");
 
         return modelAndView;
-    }
-
-
-    @PostMapping("/search")
-    public String searchBooks(@Valid @ModelAttribute("searchForm")  ModelAndView modelAndView, BookSearchRequest bookSearchRequest) {
-
-
-      String query = bookSearchRequest.getQuery();
-
-      List<Book> searchResults = bookService.searchBooks(query);
-
-
-
-      searchResults = searchResults.stream().distinct().collect(Collectors.toList());
-
-        modelAndView.addObject("searchQuery", query);
-         modelAndView.addObject("searchResults", searchResults);
-
-
-
-        return "search";
-
     }
 }

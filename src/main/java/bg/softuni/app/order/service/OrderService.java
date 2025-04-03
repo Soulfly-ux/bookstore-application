@@ -2,6 +2,7 @@ package bg.softuni.app.order.service;
 
 import bg.softuni.app.book.model.Book;
 import bg.softuni.app.book.service.BookService;
+import bg.softuni.app.exception.OrderItemNotFoundException;
 import bg.softuni.app.order.model.Order;
 import bg.softuni.app.order.model.OrderItem;
 import bg.softuni.app.order.model.OrderStatus;
@@ -115,27 +116,9 @@ public class OrderService {
 
 
 
-//    public List<Order> getAllOrders() {
-//        return orderRepository.findAll();
-//    }
-//
-//    public void completeOrder(UUID id) {
-//        Order order = orderRepository.findById(id).orElseThrow(() -> new RuntimeException("Order not found"));
-//
-//        order.setStatus(OrderStatus.COMPLETED);
-//
-//        orderRepository.save(order);
-//    }
 
 
 
-//    public void cancelOrder(UUID id) {
-//        Order order = orderRepository.findById(id).orElseThrow(() -> new RuntimeException("Order not found"));
-//
-//        order.setStatus(OrderStatus.CANCELLED);
-//
-//        orderRepository.save(order);
-//    }
 
 
     public List<OrderItem> getOrderItems(UUID orderId) {
@@ -153,14 +136,18 @@ public class OrderService {
 
 
 
-
-
-
+//    @Transactional
 //    public void removeItemFromOrder(UUID id) {
 //
+//        if (!orderItemRepository.existsById(id)) {
+//            throw new OrderItemNotFoundException("Order item not found with id: " + id);
+//        }
 //        orderItemRepository.deleteById(id);
-//    }
 //
+//    }
+
+
+////
 //
 //    public void buyItems(UUID id) {
 //        Order order = orderRepository.findById(id).orElseThrow(() -> new RuntimeException("Order not found"));
@@ -169,9 +156,7 @@ public class OrderService {
 //        orderRepository.save(order);
 //    }
 
-//    public boolean hasOrderItems(UUID id) {
-//        return !orderItemRepository.existsById(id);
-//    }
+
 
 
 
@@ -186,20 +171,5 @@ public class OrderService {
 
 
 
-//
-//    private void validateOrderItem(Book book, int quantity) {
-//        if (quantity <= 0) {
-//            throw new RuntimeException("Quantity must be greater than 0");
-//        }
-//
-//        if (!book.isAvailable()) {
-//            throw new RuntimeException("Book not found");
-//        }
-//
-//    }
 
-
-//    public Order getOrderById(UUID orderId) {
-//      return   orderRepository.findById(orderId).orElseThrow(() -> new RuntimeException("Order not found"));
-//    }
 }

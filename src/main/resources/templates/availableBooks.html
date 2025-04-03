@@ -1,3 +1,5 @@
+
+
 <!DOCTYPE html>
 <html lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org"
 >
@@ -32,29 +34,25 @@
         </li>
 
         <li class="nav-item">
-          <a class="nav-link text-white" th:href="@{/books/my_books}">Coming Soon
+          <a class="nav-link text-white" th:href="@{/books/soon}">Coming Soon
             <i class="fa-solid fa-plane-arrival"></i>
           </a>
         </li>
+
+      </ul>
+<!--      <form class="d-flex" th:action="@{/books/search}" method="POST">-->
+<!--        <input class="form-control me-2" type="search" name="query" placeholder="Search books..." aria-label="Search">-->
+<!--        <button class="btn btn-outline-light" type="submit">Search</button>-->
+<!--      </form>-->
+      <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
+<!--        <li class="nav-item">-->
+<!--          <a class="nav-link text-white" th:href="@{/contact}">-->
+<!--            <i class="fas fa-envelope"></i> Contact Us-->
+<!--          </a>-->
+<!--        </li>-->
         <li class="nav-item">
           <a class="nav-link text-white" th:href="@{/users/my-profile}">My Profile
             <i class="fa-solid fa-circle-user"></i>
-          </a>
-        </li>
-      </ul>
-      <form class="d-flex" th:action="@{/books/search}" method="POST">
-        <input class="form-control me-2" type="search" name="query" placeholder="Search books..." aria-label="Search">
-        <button class="btn btn-outline-light" type="submit">Search</button>
-      </form>
-      <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
-        <li class="nav-item">
-          <a class="nav-link text-white" th:href="@{/about}">
-            <i class="fas fa-info-circle"></i> About Us
-          </a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link text-white" th:href="@{/contact}">
-            <i class="fas fa-envelope"></i> Contact Us
           </a>
         </li>
         <li class="nav-item">
@@ -86,7 +84,7 @@
           <p class="card-text" th:text="${'Price: ' + book.price + ' EUR'}"></p>
 
           <button class="btn btn-success add-to-cart" th:data-book-id="${book.id}"
-                                                   th:data-book-title="${book.title}">
+                  th:data-book-title="${book.title}">
             Add to Cart
           </button>
 

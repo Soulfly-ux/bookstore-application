@@ -1,83 +1,5 @@
 
 
-<!--<!DOCTYPE html>-->
-<!--<html xmlns:th="http://www.thymeleaf.org">-->
-<!--<head>-->
-<!--  <meta charset="UTF-8">-->
-<!--  <title>Reviews for Book</title>-->
-<!--  <link rel="stylesheet" th:href="@{/css/reviews.css}">-->
-<!--  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">-->
-<!--  <link rel="icon" type="image/png" sizes="32x32" th:href="@{/images/favicon-32x32.png}">-->
-<!--</head>-->
-<!--<body>-->
-<!--<nav class="navbar navbar-expand-lg navbar-light bg-dark">-->
-<!--  <div class="container-fluid">-->
-
-<!--    <div class="collapse navbar-collapse" >-->
-<!--      <nav class="navbar navbar-expand-lg navbar-dark bg-dark">-->
-<!--        <div class="container-fluid">-->
-<!--          <div class="collapse navbar-collapse" id="navbarSupportedContent">-->
-<!--            <ul class="navbar-nav me-auto mb-2 mb-lg-0">-->
-<!--              <li class="nav-item">-->
-<!--                <a class="nav-link text-white" th:href="@{/books/available}">-->
-<!--                  <i class="fa-solid fa-book"></i>-->
-<!--                  Books-->
-<!--                </a>-->
-<!--              </li>-->
-<!--              <li class="nav-item">-->
-<!--                <a class="nav-link text-white" th:href="@{/users/my-profile}">-->
-<!--                  <i class="fa-solid fa-circle-user"></i>-->
-<!--                  My Profile-->
-<!--                </a>-->
-<!--              </li>-->
-<!--            </ul>-->
-<!--          </div>-->
-<!--        </div>-->
-<!--      </nav>-->
-
-
-
-<!--    </div>-->
-<!--  </div>-->
-<!--</nav>-->
-
-
-<!--<div class="review-container">-->
-
-
-
-<!--  <div class="alert-messages">-->
-<!--    <div th:if="${success}" class="alert alert-success" th:text="${success}"></div>-->
-<!--    <div th:if="${error}" class="alert alert-danger" th:text="${error}"></div>-->
-<!--  </div>-->
-
-
-<!--  <div class="review-form-card">-->
-<!--    <div class="card-header text-center">-->
-<!--      <h2>Add Your Review For This Book</h2>-->
-<!--    </div>-->
-<!--    <div class="card-body">-->
-<!--      <form th:action="@{/reviews/create/{bookId}(bookId=${bookId})}"  th:method="POST" th:object="${newReviewRequest}">-->
-<!--        <input type="hidden" th:value="bookId" th:field="*{bookId}">-->
-<!--        <input type="hidden" th:value="userId" th:field="*{userId}">-->
-
-<!--        <div class="form-group">-->
-<!--          <label for="rating">Rating</label>-->
-<!--          <select class="form-control" id="rating" th:field="*{rating}" required>-->
-<!--            <option value="">Select rating</option>-->
-<!--            <option value="1">★ (1)</option>-->
-<!--            <option value="2">★★ (2)</option>-->
-<!--            <option value="3">★★★ (3)</option>-->
-<!--            <option value="4">★★★★ (4)</option>-->
-<!--            <option value="5">★★★★★ (5)</option>-->
-<!--          </select>-->
-<!--        </div>-->
-
-<!--        <div class="form-group">-->
-<!--          <label for="comment">Your Review</label>-->
-<!--          <textarea class="form-control" id="comment" th:field="*{comment}" rows="4" required></textarea>-->
-<!--        </div>-->
-
 
 
 <!DOCTYPE html>
@@ -158,7 +80,7 @@
 
   <div class="action-buttons" th:if="${hasReviews}">
     <a th:href="@{/books/available}" class="btn-back">
-      <i class="fas fa-arrow-left me-1"></i> Back to Book
+      <i class="fas fa-arrow-left me-1"></i> Back to Books
     </a>
     <a th:href="@{/reviews/book/{id}/average(id=${bookId})}" class="btn-average">
       View Average Rating <i class="fas fa-chevron-right"></i>

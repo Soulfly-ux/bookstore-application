@@ -23,7 +23,7 @@
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                 <li class="nav-item">
-                    <a class="nav-link text-white" th:href="@{/books/available}">Coming Soon
+                    <a class="nav-link text-white" th:href="@{/books/soon}">Coming Soon
                         <i class="fa-solid fa-plane-arrival"></i>
                     </a>
                 </li>
@@ -32,30 +32,31 @@
                         <i class="fa-solid fa-book"></i>
                     </a>
                 </li>
+
+            </ul>
+<!--            <form class="d-flex" th:action="@{/books/search}" method="POST">-->
+<!--                <input class="form-control me-2" type="search" name="query" placeholder="Search books..." aria-label="Search">-->
+<!--                <button class="btn btn-outline-light" type="submit">Search</button>-->
+<!--            </form>-->
+            <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
+<!--                <li class="nav-item">-->
+<!--                    <a class="nav-link text-white" th:href="@{/contact}">-->
+<!--                        <i class="fas fa-envelope"></i> Contact Us-->
+<!--                    </a>-->
+<!--                </li>-->
                 <li class="nav-item">
                     <a class="nav-link text-white" th:href="@{/users/my-profile}">My Profile
                         <i class="fa-solid fa-circle-user"></i>
                     </a>
                 </li>
-            </ul>
-            <form class="d-flex" th:action="@{/books/search}" method="POST">
-                <input class="form-control me-2" type="search" name="query" placeholder="Search books..." aria-label="Search">
-                <button class="btn btn-outline-light" type="submit">Search</button>
-            </form>
-            <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
-                <li class="nav-item">
-                    <a class="nav-link text-white" th:href="@{/about}">
-                        <i class="fas fa-info-circle"></i> About Us
-                    </a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link text-white" th:href="@{/contact}">
-                        <i class="fas fa-envelope"></i> Contact Us
-                    </a>
-                </li>
                 <li class="nav-item">
                     <a class="nav-link text-white" th:href="@{/orders}">
                         <i class="fas fa-shopping-cart"></i> My Cart
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link text-white" th:href="@{/logout}">
+                        <i class="fas fa-sign-out-alt"></i> Logout
                     </a>
                 </li>
             </ul>
@@ -78,7 +79,7 @@
             </div>
         </div>
 
-        <!-- Секция за книги -->
+
         <div class="col-md-9">
             <h1 class="text-center page-title">Books of the Month</h1>
             <div class="row">
