@@ -1,4 +1,5 @@
 
+
 <!DOCTYPE html>
 <html lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
 <head>
@@ -12,50 +13,58 @@
 </head>
 <body>
 
-<nav class="navbar navbar-expand-lg navbar-light bg-dark">
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
     <div class="container-fluid">
-        <a class="navbar-brand text-white" href="#">Bookstore</a>
-        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <a class="navbar-brand" th:href="@{/home}">Literary Escape</a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
             <span class="navbar-toggler-icon"></span>
         </button>
-        <div class="collapse navbar-collapse" id="navbarSupportedContent">
-            <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-                <li class="nav-item">
-                    <a class="nav-link active text-white" aria-current="page" th:href="@{/}">Home</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link text-white" th:href="@{/books/available}">Books</a>
-                </li>
-            </ul>
-        </div>
     </div>
 </nav>
 
+<div class="container">
+    <div class="profile-container">
+        <div class="profile-header">
+            <h2>Edit Profile</h2>
+            <p class="text-muted">Update your personal information</p>
+        </div>
 
-<div class="container mt-5">
-    <h2 class="text-center mb-4">Edit Profile</h2>
-    <form th:action="@{'/users/' + ${user.id} + '/profile'}" th:method="PUT" th:object="${userEditRequest}" class="col-md-6 offset-md-3">
-        <div class="mb-3">
-            <label for="firstName" class="form-label">First Name</label>
-            <input type="text" class="form-control" id="firstName" name="firstName" th:field="*{firstName}" required>
-            <p class="alert-warning" th:if="${#fields.hasErrors('firstName')}" th:errors="*{firstName}"></p>
-        </div>
-        <div class="mb-3">
-            <label for="lastName" class="form-label">Last Name</label>
-            <input type="text" class="form-control" id="lastName" name="lastName" th:field="*{lastName}" required>
-            <p class="alert-warning" th:if="${#fields.hasErrors('lastName')}" th:errors="*{lastName}"></p>
-        </div>
-        <div class="mb-3">
-            <label for="profilePictureUrl" class="form-label">Profile Picture URL</label>
-            <input type="text" class="form-control" id="profilePictureUrl" name="profilePictureUrl" th:field="*{profilePicture}">
-            <p class="alert-warning" th:if="${#fields.hasErrors('profilePicture')}" th:errors="*{profilePicture}"></p>
-        </div>
-        <button type="submit" class="btn btn-primary">Save Changes</button>
-    </form>
+        <form th:action="@{'/users/' + ${user.id} + '/profile'}" th:method="PUT" th:object="${userEditRequest}" class="profile-form">
+            <div class="mb-4">
+                <label for="firstName" class="form-label">First Name</label>
+                <input type="text" class="form-control" id="firstName" th:field="*{firstName}" required>
+                <div class="error-message" th:if="${#fields.hasErrors('firstName')}" th:errors="*{firstName}"></div>
+            </div>
+
+            <div class="mb-4">
+                <label for="lastName" class="form-label">Last Name</label>
+                <input type="text" class="form-control" id="lastName" th:field="*{lastName}" required>
+                <div class="error-message" th:if="${#fields.hasErrors('lastName')}" th:errors="*{lastName}"></div>
+            </div>
+
+            <div class="mb-4">
+                <label for="profilePictureUrl" class="form-label">Profile Picture URL</label>
+                <input type="text" class="form-control" id="profilePictureUrl" th:field="*{profilePicture}">
+                <div class="error-message" th:if="${#fields.hasErrors('profilePicture')}" th:errors="*{profilePicture}"></div>
+                <small class="text-muted">Paste a link to your profile image</small>
+            </div>
+
+            <div class="form-actions">
+                <button type="submit" class="btn btn-save text-white">
+                    <i class="fas fa-save me-1"></i> Save Changes
+                </button>
+                <a th:href="@{/users/my-profile}" class="btn btn-back text-white">
+                    <i class="fas fa-arrow-left me-1"></i> Back to Dashboard
+                </a>
+            </div>
+        </form>
+    </div>
 </div>
 
-<footer class="bg-dark text-white text-center py-3 mt-5">
-    <p>&copy; 2025 Literary Escape. All rights reserved.</p>
+<footer class="bg-dark text-white py-3">
+    <div class="container text-center">
+        <p class="mb-0">&copy; 2025 Literary Escape. All rights reserved.</p>
+    </div>
 </footer>
 
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"></script>

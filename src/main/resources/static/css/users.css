@@ -7,7 +7,7 @@ body {
     padding: 0;
 }
 
-/* Навигационна лента */
+
 .navbar {
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
@@ -140,5 +140,14 @@ footer {
 footer p {
     margin-bottom: 0;
     font-size: 0.9rem;
+}
+.back-button-container {
+    margin-top: 30px;
+    text-align: center;
+}
+.action-buttons {
+    display: flex;
+    gap: 5px;
+    justify-content: center;
 }
 

@@ -103,6 +103,14 @@ public class UserController {
         return "redirect:/users";
     }
 
+    @PutMapping("/{id}/status")
+    public String changeUserStatus(@PathVariable UUID id) {
+
+       userService.switchStatus(id);
+
+        return "redirect:/users";
+    }
+
    @DeleteMapping("/{id}/delete")
     public String deleteUser(@PathVariable UUID id) {
 

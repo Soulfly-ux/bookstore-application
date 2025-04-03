@@ -36,10 +36,10 @@ public class BookController {
 
 
     @GetMapping("/available")
-    public ModelAndView getBooksPage() {
+    public ModelAndView getBooksPage(@AuthenticationPrincipal AuthenticationDetails authenticationDetails) {
 
 
-
+        User user = userService.getById(authenticationDetails.getUserId());
         List<Book> books = bookService.getAllBooks();
 
         ModelAndView modelAndView = new ModelAndView();

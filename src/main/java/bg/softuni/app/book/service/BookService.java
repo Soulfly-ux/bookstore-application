@@ -2,6 +2,7 @@ package bg.softuni.app.book.service;
 
 import bg.softuni.app.book.model.Book;
 import bg.softuni.app.book.repository.BookRepository;
+import bg.softuni.app.exception.BookNotFoundException;
 import bg.softuni.app.web.dto.AddBook;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -56,6 +57,13 @@ public class BookService {
                 .build();
 
         return bookRepository.save(book);
+    }
+
+
+    public String getBookTitle(UUID bookId) {
+        return bookRepository.findById(bookId)
+                .map(Book::getTitle)
+                .orElseThrow(() -> new BookNotFoundException("Book not found with id: " + bookId));
     }
 
     public List<Book> getBooksByCategoryId(UUID categoryId) {

@@ -1,6 +1,7 @@
 package bg.softuni.app.web;
 
 
+import bg.softuni.app.book.service.BookService;
 import bg.softuni.app.exception.ReviewNotFoundException;
 import bg.softuni.app.review.client.ReviewClient;
 import bg.softuni.app.review.client.dto.BookReviewResponse;
@@ -28,11 +29,15 @@ public class ReviewController {
 
    private final ReviewService reviewService;
    private final UserService userService;
+   private final BookService bookService;
+
+
 
    @Autowired
-    public ReviewController(ReviewService reviewService, UserService userService) {
+    public ReviewController(ReviewService reviewService, UserService userService, BookService bookService) {
         this.reviewService = reviewService;
        this.userService = userService;
+       this.bookService = bookService;
    }
 
     @GetMapping("/{bookId}")
@@ -49,6 +54,7 @@ public class ReviewController {
 
         modelAndView.setViewName("reviews-list");
         modelAndView.addObject("bookId", bookId);
+        modelAndView.addObject("bookTitle", bookService.getBookTitle(bookId));
         modelAndView.addObject("userId", userId);
         modelAndView.addObject("reviews", reviews);
         modelAndView.addObject("hasReviews", !reviews.isEmpty());

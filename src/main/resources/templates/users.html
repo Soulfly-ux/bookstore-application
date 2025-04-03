@@ -1,3 +1,5 @@
+
+
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
@@ -7,78 +9,86 @@
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
   <link rel="icon" type="image/png" sizes="32x32" th:href="@{/images/favicon-32x32.png}">
   <title>User List</title>
-  <link rel="stylesheet" th:href="@{/css/users.css}"> <!-- Връзка към CSS файла -->
+  <link rel="stylesheet" th:href="@{/css/users.css}">
+  <style>
+    .back-button-container {
+      margin-top: 30px;
+      text-align: center;
+    }
+    .action-buttons {
+      display: flex;
+      gap: 5px;
+      justify-content: center;
+    }
+  </style>
 </head>
 <body>
 
 <nav class="navbar navbar-expand-lg navbar-light bg-dark">
   <div class="container-fluid">
-    <a class="navbar-brand text-white" href="#">Bookstore</a>
+    <a class="navbar-brand text-white" href="#">Literary Escape</a>
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
     </button>
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
-      <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-        <li class="nav-item">
-          <a class="nav-link active text-white" aria-current="page" th:href="@{/home}">Home</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link text-white" th:href="@{/books/register}">New Book Register</a>
-        </li>
 
-      </ul>
     </div>
   </div>
 </nav>
 
-
-<div class="container mt-5 text-center" >
+<div class="container mt-5">
   <h2 class="text-center mb-4">User List</h2>
-  <table class="table table-striped table-bordered">
-    <thead class="table-dark">
-    <tr>
-      <th>ID</th>
-      <th>First Name</th>
-      <th>Last Name</th>
-      <th>Email</th>
-      <th>Country</th>
-      <th>Created On</th>
-      <th>Role</th>
-      <th>Action</th>
-    </tr>
-    </thead>
-    <tbody>
-    <!-- Примерни данни (заменете с Thymeleaf) -->
-    <tr th:each="user : ${users}">
-      <td th:text="${user.id}"></td>
-      <td th:text="${user.firstName}"></td>
-      <td th:text="${user.lastName}"></td>
-      <td th:text="${user.email}"></td>
-      <td th:text="${#strings.capitalize(#strings.toLowerCase(user.country.name()))}"></td>
-      <td th:text="${#temporals.format(user.createdOn, 'dd MMM yyyy ')}"></td>
-      <td th:text="${#strings.capitalize(#strings.toLowerCase(user.role.name()))}"></td>
-      <td>
-        <div class="action-buttons">
+  <div class="table-responsive">
+    <table class="table table-striped table-bordered">
+      <thead class="table-dark">
+      <tr>
+        <th>ID</th>
+        <th>First Name</th>
+        <th>Last Name</th>
+        <th>Email</th>
+        <th>Country</th>
+        <th>Created On</th>
+        <th>Role</th>
+        <th>is Active</th>
+        <th>Action</th>
+      </tr>
+      </thead>
+      <tbody>
+      <tr th:each="user : ${users}">
+        <td th:text="${user.id}"></td>
+        <td th:text="${user.firstName}"></td>
+        <td th:text="${user.lastName}"></td>
+        <td th:text="${user.email}"></td>
+        <td th:text="${#strings.capitalize(#strings.toLowerCase(user.country.name()))}"></td>
+        <td th:text="${#temporals.format(user.createdOn, 'dd MMM yyyy ')}"></td>
+        <td th:text="${#strings.capitalize(#strings.toLowerCase(user.role.name()))}"></td>
+        <td th:text="${#strings.capitalize(#strings.toLowerCase(user.isActive()))}"></td>
+        <td>
+          <div class="action-buttons">
+            <form th:action="@{'/users/' + ${user.id} + '/role'}" th:method="PUT">
+              <button type="submit" class="btn btn-warning btn-sm">
+                <i class="fa-solid fa-toggle-on"></i> Switch Role
+              </button>
+            </form>
+            <form th:action="@{'/users/' + ${user.id} + '/status'}" th:method="PUT">
+              <button type="submit" class="btn btn-danger btn-sm">
+                <i class="fas fa-trash"></i> Switch Status
+              </button>
+            </form>
+          </div>
+        </td>
+      </tr>
+      </tbody>
+    </table>
+  </div>
 
-          <form th:action="@{'/users/' + ${user.id} + '/role'}" th:method="PUT" class="btn btn-warning">
-            <button type="submit" >
-            <i class="fa-solid fa-toggle-on"></i> Switch Role
-            </button>
-          </form>
 
-
-          <form th:action="@{'/users/' + ${user.id} + '/delete'}" th:method="DELETE" style="display: inline;">
-            <button type="submit" class="btn btn-danger">
-              <i class="fas fa-trash"></i> Delete
-            </button>
-          </form>
-        </div>
-      </td>
-    </tr>
-    </tbody>
-  </table>
+  <div class="back-button-container">
+    <a th:href="@{/users/my-profile}" class="btn btn-primary">
+      <i class="fas fa-arrow-left me-2"></i> Back to Dashboard
+    </a>
+  </div>
 </div>
-
 
 <footer class="bg-dark text-white text-center py-3 mt-5">
   <p>&copy; 2025 Literary Escape. All rights reserved.</p>

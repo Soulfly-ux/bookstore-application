@@ -8,16 +8,16 @@ body {
 }
 
 .title {
-    font-size: 24px; /* Увеличен размер на текста */
-    color: #dc3545; /* Червен цвят */
-    font-weight: bold; /* Удебелен шрифт */
-    text-transform: uppercase; /* Преобразува в главни букви */
-    margin-top: 20px; /* Разстояние отгоре */
-    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.3); /* Добавен лек текстов сянка */
+    font-size: 24px;
+    color: #dc3545;
+    font-weight: bold;
+    text-transform: uppercase;
+    margin-top: 20px;
+    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.3);
 }
 
 
-/* Навигационна лента */
+
 .navbar {
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
@@ -36,7 +36,7 @@ body {
     color: #007bff !important;
 }
 
-/* Основно съдържание */
+
 .container {
     margin-top: 2rem;
 }
@@ -84,7 +84,7 @@ h2 {
     border: 1px solid #dee2e6;
 }
 
-/* Бутони за действие */
+
 .action-buttons {
     display: flex;
     gap: 10px;
@@ -117,7 +117,7 @@ h2 {
     border-color: #bd2130;
 }
 
-/* Футер */
+
 footer {
     background-color: #343a40;
     color: #fff;

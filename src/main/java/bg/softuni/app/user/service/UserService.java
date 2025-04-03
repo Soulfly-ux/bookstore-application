@@ -97,7 +97,8 @@ public class UserService implements UserDetailsService {
 
     public void switchUserRole(UUID id) {
 
-        User user = userRepository.findById(id).orElseThrow(() -> new IllegalStateException("User with id " + id + " does not exist"));
+        User user = userRepository.findById(id).orElseThrow(()
+                -> new IllegalStateException("User with id " + id + " does not exist"));
 
 
 
@@ -106,6 +107,16 @@ public class UserService implements UserDetailsService {
         }else {
             user.setRole(UserRole.USER);
         }
+        userRepository.save(user);
+    }
+
+    public void switchStatus(UUID id) {
+
+        User user = userRepository.findById(id).orElseThrow(()
+                -> new IllegalStateException("User with id " + id + " does not exist"));
+
+
+        user.setActive(!user.isActive());
         userRepository.save(user);
     }
 

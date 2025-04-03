@@ -1,5 +1,4 @@
 
-
 body {
     font-family: Arial, sans-serif;
     background-color: #f9f9f9;
@@ -7,50 +6,32 @@ body {
     padding: 0;
 }
 
-/* Стилове за навигационната лента */
-/*.navbar {*/
-/*    background-color: #343a40 !important; !* Тъмно сив цвят *!*/
-/*    padding: 10px 0;*/
-/*}*/
 
 .navbar {
-    position: fixed;
+    position: page;
     top: 0;
     left: 0;
     right: 0;
     z-index: 1000;
-    padding: 0.5rem 1rem;
+    padding: 0.2rem 1rem;
 }
 
 .navbar-brand {
     font-size: 1.5rem;
     font-weight: bold;
-    color: #ffffff !important; /* Бял цвят за текста */
+    color: #ffffff !important;
 }
 
 .navbar-nav .nav-link {
-    color: #ffffff !important; /* Бял цвят за връзките */
+    color: #ffffff !important;
     margin-right: 15px;
 }
 
 .navbar-nav .nav-link:hover {
-    color: #ffc107 !important; /* Жълт цвят при hover */
-}
-.white-navbar {
-    background-color: white !important;
-    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
-}
-.white-navbar .nav-link,
-.white-navbar .navbar-brand {
-    color: #212529 !important;
-}
-.white-footer {
-    background-color: white !important;
-    color: #212529 !important;
-    box-shadow: 0 -2px 4px rgba(0,0,0,0.1);
+    color: #ffc107 !important;
 }
 
-/* Стилове за формата за търсене в navbar */
+
 .form-control {
     border-radius: 5px;
     padding: 10px;
@@ -83,10 +64,10 @@ body {
 .card-img-top {
     border-top-left-radius: 10px;
     border-top-right-radius: 10px;
-    height: 300px; /* Фиксирана височина за изображението */
-    width: 100%; /* Ширината е 100% от контейнера */
-    object-fit: contain; /* Показва цялото изображение без изрязване */
-    background-color: #f8f9fa; /* Фон за празното пространство */
+    height: 300px;
+    width: 100%;
+    object-fit: contain;
+    background-color: #f8f9fa;
     transition: opacity 0.3s ease;
 }
 
@@ -96,9 +77,9 @@ body {
     left: 0;
     width: 100%;
     height: 100%;
-    background-color: rgba(0, 0, 0, 0.7); /* Тъмен фон с прозрачност */
+    background-color: rgba(0, 0, 0, 0.7);
     color: white;
-    opacity: 0; /* Начална прозрачност */
+    opacity: 0;
     transition: opacity 0.3s ease;
     display: flex;
     flex-direction: column;
@@ -109,7 +90,7 @@ body {
 }
 
 .card:hover .card-body {
-    opacity: 1; /* Показване на текста при hover */
+    opacity: 1;
 }
 
 .card-title {
@@ -123,12 +104,12 @@ body {
     margin: 5px 0;
 }
 
-/* Стилове за бутона "Add to Cart" */
+
 .add-to-cart {
     margin-top: 15px;
     padding: 10px 20px;
     font-size: 1rem;
-    background-color: #28a745; /* Зелен цвят */
+    background-color: #28a745;
     border: none;
     border-radius: 5px;
     cursor: pointer;
@@ -136,13 +117,18 @@ body {
 }
 
 .add-to-cart:hover {
-    background-color: #218838; /* По-тъмен зелен цвят при hover */
+    background-color: #218838;
 }
 
-/* Стилове за футера */
 footer {
-    margin-top: 40px;
-    padding: 20px 0;
     background-color: #343a40;
-    color: #ffffff;
+    color: #fff;
+    padding: 1rem 0;
+    margin-top: 2rem;
+    box-shadow: 0 -2px 4px rgba(0, 0, 0, 0.1);
+}
+
+footer p {
+    margin-bottom: 0;
+    font-size: 0.9rem;
 }
